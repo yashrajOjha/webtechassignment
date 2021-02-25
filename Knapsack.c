@@ -1,13 +1,14 @@
 #include<stdio.h>
 
 void knapsack(int n, float weight[], float profit[], float capacity) {
-    int ratio[n],temp;
-    float x[20], tp = 0;
+    float ratio[n],temp;
+    float tp = 0;
     int i, j, u;
+    float x[n];
     u = capacity;
 
    for (i = 0; i < n; i++) {
-      ratio[i] = profit[i] / weight[i];
+      ratio[i] = profit[i]/weight[i];
    }
 
    for (i = 0; i < n; i++) {
@@ -30,7 +31,7 @@ void knapsack(int n, float weight[], float profit[], float capacity) {
    for (i = 0; i < n; i++)
       x[i] = 0.0;
 
-   for (i = 0; i < n; i++) {
+   for (i = 0; i<n; i++) {
       if (weight[i] > u)
          break;
       else {
@@ -41,14 +42,14 @@ void knapsack(int n, float weight[], float profit[], float capacity) {
    }
 
    if (i < n)
-      x[i] = u / weight[i];
-
+   {
+       x[i] = u/weight[i];
+   }
+   for (int i=0;i<n;i++)
+   {
+       printf("%f - ", x[i]);
+   }
    tp = tp + (x[i] * profit[i]);
-
-   printf("\nThe result vector is:- ");
-   for (i = 0; i < n; i++)
-      printf("%f\t", x[i]);
-
    printf("\nMaximum profit is:- %f", tp);
 
 }
